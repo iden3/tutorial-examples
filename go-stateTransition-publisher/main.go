@@ -15,11 +15,16 @@ import (
 )
 
 func main() {
+	// Standard GO configuration to connect to an Ethereum node and run transactions
+
+	// Connect to an ethereum RPC node (Infura or Alchemy) using your own token
 	client, err := ethclient.Dial("https://polygon-mumbai.infura.io/v3/<token>")
 	if err != nil {
 		log.Fatal(err)
 	}
 
+    // Pass in your private key
+    // NOTE: NEVER store your private key in source code if you are gonna publish it or use in production.
 	privateKey, err := crypto.HexToECDSA("<private key>")
 	if err != nil {
 		log.Fatal(err)
@@ -52,12 +57,14 @@ func main() {
 	auth.GasLimit = uint64(500000) // in units, avarage gas
 	auth.GasPrice = gasPrice
 
+	// Load an istance of the smart contract
 	address := common.HexToAddress("0xa36786C3E18225da7cc8FC69c6443ecD41827FF5")
 	instance, err := sate.NewSate(address, client)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Hardcode the inputs from the public.json from the Generate Proof section
 	id, _ := new(big.Int).SetString("<>", 10)
 	oldState, _ := new(big.Int).SetString(
 		("<>",, 10)
@@ -65,6 +72,7 @@ func main() {
 		("<>",, 10)
 	isOldStateGenesis, _ := new(big.Int).SetString("1", 10)
 
+	// Hardcode the proof.json files from the Generate Proof section
 	proofA_0 := stringToInt("<>")
 	proofA_1 := stringToInt("<>")
 
@@ -85,6 +93,7 @@ func main() {
 	}
 	proofC := [2]*big.Int{proofC_0, proofC_1}
 
+	// Call the smart contract TransitState function passing in the inputs it needs
 	tx, err := instance.TransitState(auth, id, oldState, newState, isOldStateGenesis, proofA, proofB, proofC)
 	if err != nil {
 		log.Fatal(err)
