@@ -73,7 +73,7 @@ func main() {
 		issuerAuthClaimRevNonce, iRevTree.Root())
 
 	// issue issuerClaim for user
-	dataSlotA, _ := core.NewElemBytesFromInt(big.NewInt(10))
+	dataSlotA, _ := core.NewElemBytesFromInt(big.NewInt(25))
 
 	nonce := 1
 	var schemaHash core.SchemaHash
@@ -157,8 +157,8 @@ func main() {
 
 	query := circuits.Query{
 		SlotIndex: 2,
-		Values:    []*big.Int{new(big.Int).SetInt64(10)},
-		Operator:  0,
+		Values:    []*big.Int{new(big.Int).SetInt64(18)},
+		Operator:  2,
 	}
 
 	atomicInputs := circuits.AtomicQuerySigInputs{
