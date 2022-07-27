@@ -38,7 +38,7 @@ func main() {
 	// Generate a new MerkleTree with 32 levels
 	mt, _ := merkletree.NewMerkleTree(ctx, store, 32)
 
-	// Add a leaf to the tree with key 1 and value 10
+	// Add a leaf to the tree with index 1 and value 10
 	index1 := big.NewInt(1)
 	value1 := big.NewInt(10)
 	mt.Add(ctx, index1, value1)
@@ -52,7 +52,7 @@ func main() {
 	proofExist, value, _ := mt.GenerateProof(ctx, index1, mt.Root())
 
 	fmt.Println("Proof of membership:", proofExist.Existence)
-	fmt.Println("Value corresponding to the queried key:", value)
+	fmt.Println("Value corresponding to the queried index:", value)
 
 	// Proof of non-membership of a leaf with index 4
 	proofNotExist, _, _ := mt.GenerateProof(ctx, big.NewInt(4), mt.Root())
@@ -78,7 +78,7 @@ func main() {
 
 	authSchemaHash, _ := core.NewSchemaHashFromHex("ca938857241db9451ea329256b9c06e5")
 
-	// Add revocation nonce. Used to invalidate the claim
+    // Add revocation nonce. Used to invalidate the claim. This may be a random number in the real implementation.
 	revNonce := uint64(1)
 
 	authClaim, _ := core.NewClaim(authSchemaHash,
