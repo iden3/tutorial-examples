@@ -78,7 +78,7 @@ func main() {
 
 	authSchemaHash, _ := core.NewSchemaHashFromHex("ca938857241db9451ea329256b9c06e5")
 
-    // Add revocation nonce. Used to invalidate the claim. This may be a random number in the real implementation.
+	// Add revocation nonce. Used to invalidate the claim. This may be a random number in the real implementation.
 	revNonce := uint64(1)
 
 	authClaim, _ := core.NewClaim(authSchemaHash,

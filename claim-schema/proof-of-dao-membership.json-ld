@@ -1,0 +1,23 @@
+{
+"@context": [{
+    "@version": 1.1,
+    "@protected": true,
+    "id": "@id",
+    "type": "@type",
+    "ProofOfDaoMembership": {
+    "@id": "https://raw.githubusercontent.com<pathToYourJson-LdDocument>#ProofOfDaoMembership",
+    "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "auth-vocab": "https://github.com/<pathToYourVocabMDFile>",
+        "serialization": "https://github.com/iden3/claim-schema-vocab/blob/main/credentials/serialization.md#",
+        "role": {
+        "@id": "vocab:role",
+        "@type": "serialization:IndexDataSlotA"
+        },
+    }
+    }
+}]
+}
